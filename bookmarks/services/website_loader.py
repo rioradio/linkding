@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from charset_normalizer import from_bytes
 from django.utils import timezone
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -85,8 +86,9 @@ def load_page(url: str):
     size = 0
     content = None
     iteration = 0
+    proxies = settings.LD_WEBSITE_LOADER_PROXY
     # Use with to ensure request gets closed even if it's only read partially
-    with requests.get(url, timeout=10, headers=headers, stream=True) as r:
+    with requests.get(url, timeout=10, headers=headers, stream=True, proxies=proxies) as r:
         for chunk in r.iter_content(chunk_size=CHUNK_SIZE):
             size += len(chunk)
             iteration = iteration + 1

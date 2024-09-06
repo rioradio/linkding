@@ -326,3 +326,5 @@ LD_SINGLEFILE_TIMEOUT_SEC = float(os.getenv("LD_SINGLEFILE_TIMEOUT_SEC", 120))
 # it turns out to be useful in the future.
 LD_MONOLITH_PATH = os.getenv("LD_MONOLITH_PATH", "monolith")
 LD_MONOLITH_OPTIONS = os.getenv("LD_MONOLITH_OPTIONS", "-a -v -s")
+
+LD_WEBSITE_LOADER_PROXY = json.loads(os.getenv("LD_WEBSITE_LOADER_PROXY") or "{}")
